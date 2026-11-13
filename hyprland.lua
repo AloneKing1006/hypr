@@ -37,6 +37,14 @@ hl.monitor({
     -- position = "auto",
     -- scale    = "auto",
 })
+
+hl.monitor({
+    output   = "VGA-2",
+    disabled = true,
+    -- mode     = "preferred",
+    -- position = "auto",
+    -- scale    = "auto",
+})
 ---------------------
 ---- MY PROGRAMS ----
 ---------------------
