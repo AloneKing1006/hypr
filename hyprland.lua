@@ -1,15 +1,3 @@
--- This is an example Hyprland Lua config file.
--- Refer to the wiki for more information.
--- https://wiki.hypr.land/configuring/
-
--- Please note not all available settings / options are set here.
--- For a full list, see the wiki
-
--- You can (and should!!) split this configuration into multiple files
--- Create your files separately and then require them like this:
--- require("myColors")
-
-
 ------------------
 ---- MONITORS ----
 ------------------
@@ -52,10 +40,10 @@ hl.monitor({
 -- Set programs that you use
 local terminal    = "kitty"
 local fileManager = "thunar"
-local menu = "rofi -show run"
+local menu = "rofi -show drun"
 local browser = "firefox"
 local bittorrent = "qbittorrent"
-
+local power_menu = os.getenv("HOME") .. "/.config/rofi/rofi-powermenu"
 
 -------------------
 ---- AUTOSTART ----
@@ -375,14 +363,14 @@ hl.bind("XF86AudioPrev",  hl.dsp.exec_cmd("playerctl previous"),   { locked = tr
 
 -- Screenshot with grim/slurp
 -- Print: Select area and save screenshot
-hl.bind("Print", hl.dsp.exec_cmd([[
-    grim -g "$(slurp)" "$HOME/Pictures/screenshot-$(date +%Y-%m-%d-%H%M%S).png"
-]]))
+hl.bind("Print", hl.dsp.exec_cmd([[grim -g "$(slurp)" "$HOME/Pictures/screenshot-$(date +%Y-%m-%d-%H%M%S).png"]]))
 
 -- Super + Print: Select area and copy to clipboard
-hl.bind("SUPER + Print", hl.dsp.exec_cmd([[
-    grim -g "$(slurp)" - | wl-copy
-]]))
+hl.bind("SUPER + Print", hl.dsp.exec_cmd([[grim -g "$(slurp)" - | wl-copy]]))
+
+-- TokyoNight Rofi Power Menu
+hl.bind("SUPER + ESCAPE", hl.dsp.exec_cmd(power_menu), { description = "Open Rofi Power Menu" })
+
 --------------------------------
 ---- WINDOWS AND WORKSPACES ----
 --------------------------------
